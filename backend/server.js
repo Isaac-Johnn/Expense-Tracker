@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 const cors = require('cors')
+const PORT = process.env.PORT || 3001
 
 const app = express()
 app.use(express.json())
@@ -110,11 +111,6 @@ app.get('/expenses', (req, res) => {
 })
 
 
-
-
-
-
-
-app.listen(3001, () => {
-    console.log('Server running on port 3001')
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
