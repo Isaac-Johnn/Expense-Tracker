@@ -10,23 +10,40 @@ app.use(cors())
 const filePath = path.join(__dirname, 'data', 'expenses.json')
 
 const toPaise = (amount) => {
-  const numericAmount = Number(amount)
+    const numericAmount = Number(amount)
 
-  if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
-    return null
-  }
+    if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
+        return null
+    }
 
-  const paise = Math.round(numericAmount * 100)
+    const paise = Math.round(numericAmount * 100)
 
-  return Number.isSafeInteger(paise) && paise > 0 ? paise : null
+    return Number.isSafeInteger(paise) && paise > 0 ? paise : null
 }
 
 app.post('/expenses', (req, res) => {
     const newExpense = req.body
+
+    if (newExpense.amount === undefined || newExpense.amount === null || newExpense.amount === '') {
+        return res.status(400).json({ error: 'Amount is required' })
+    }
+
     const amountInPaise = toPaise(newExpense.amount)
 
     if (!amountInPaise) {
-        return res.status(400).json({ error: 'Amount must be a positive amount' })
+        return res.status(400).json({ error: 'Amount must be a number greater than 0' })
+    }
+
+    if (!newExpense.category || !newExpense.category.trim()) {
+        return res.status(400).json({ error: 'Category is required' })
+    }
+
+    if (!newExpense.description || !newExpense.description.trim()) {
+        return res.status(400).json({ error: 'Description is required' })
+    }
+
+    if (!newExpense.date || isNaN(new Date(newExpense.date))) {
+        return res.status(400).json({ error: 'Valid date is required' })
     }
 
     // Step 1: Read existing data
@@ -66,30 +83,30 @@ app.post('/expenses', (req, res) => {
 
 
 app.get('/expenses', (req, res) => {
-  let expenses = []
+    let expenses = []
 
-  try {
-    const data = fs.readFileSync(filePath, 'utf-8')
-    expenses = data ? JSON.parse(data) : []
-  } catch (err) {
-    expenses = []
-  }
+    try {
+        const data = fs.readFileSync(filePath, 'utf-8')
+        expenses = data ? JSON.parse(data) : []
+    } catch (err) {
+        expenses = []
+    }
 
-  // 🔍 Filter by category
-  if (req.query.category) {
-    expenses = expenses.filter(
-      (e) => e.category === req.query.category
-    )
-  }
+    // 🔍 Filter by category
+    if (req.query.category) {
+        expenses = expenses.filter(
+            (e) => e.category === req.query.category
+        )
+    }
 
-  // 🔽 Sort by date (newest first)
-  if (req.query.sort === 'date_desc') {
-    expenses.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    )
-  }
+    // 🔽 Sort by date (newest first)
+    if (req.query.sort === 'date_desc') {
+        expenses.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+        )
+    }
 
-  res.json(expenses)
+    res.json(expenses)
 })
 
 
