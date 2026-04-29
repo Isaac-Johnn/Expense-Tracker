@@ -177,7 +177,7 @@ Supports optional query params:
 
 Frontend can be deployed using:
 
-* Vercel
+* Vercel: https://expense-tracker-flax-three-76.vercel.app/
 
 🔌 Backend API:
 
