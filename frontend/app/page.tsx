@@ -25,7 +25,7 @@ const emptyForm: ExpenseForm = {
 }
 
 const normalizeCategory = (category: string) => category.trim().toLowerCase()
-const expensesUrl = 'http://localhost:3001/expenses'
+const expensesUrl = process.env.NEXT_PUBLIC_API_URL + '/expenses'
 const formatCurrency = (amountInPaise: number) =>
   (amountInPaise / 100).toLocaleString('en-IN', {
     style: 'currency',
