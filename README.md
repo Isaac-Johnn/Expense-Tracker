@@ -179,9 +179,13 @@ Frontend can be deployed using:
 
 * Vercel
 
-Backend can be deployed using:
+🔌 Backend API:
 
-* Render / Railway
+Base URL:
+* https://expense-tracker-6tss.onrender.com
+
+Test endpoint:
+* https://expense-tracker-6tss.onrender.com/expenses
 
 ---
 
