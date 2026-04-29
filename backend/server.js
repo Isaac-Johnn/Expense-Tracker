@@ -9,8 +9,33 @@ app.use(cors())
 
 const filePath = path.join(__dirname, 'data', 'expenses.json')
 
+const toPaise = (amount) => {
+    const amountText = String(amount).trim()
+
+    if (!/^\d+(\.\d{1,2})?$/.test(amountText)) {
+        return null
+    }
+
+    if (!amountText.includes('.')) {
+        const paise = Number(amountText)
+        return Number.isSafeInteger(paise) && paise > 0 ? paise : null
+    }
+
+    const [rupees, paise = ''] = amountText.split('.')
+    const amountInPaise = Number(rupees) * 100 + Number(paise.padEnd(2, '0'))
+
+    return Number.isSafeInteger(amountInPaise) && amountInPaise > 0
+        ? amountInPaise
+        : null
+}
+
 app.post('/expenses', (req, res) => {
     const newExpense = req.body
+    const amountInPaise = toPaise(newExpense.amount)
+
+    if (!amountInPaise) {
+        return res.status(400).json({ error: 'Amount must be a positive integer' })
+    }
 
     // Step 1: Read existing data
     let expenses = []
@@ -32,6 +57,7 @@ app.post('/expenses', (req, res) => {
     // Step 3: Add metadata
     const expenseToSave = {
         ...newExpense,
+        amount: amountInPaise,
         created_at: new Date().toISOString()
     }
 

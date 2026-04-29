@@ -1,7 +1,7 @@
 [
   {
     "id": "9f3524d6-b6c6-41e6-99f6-68d146d7c2ea",
-    "amount": 100,
+    "amount": 10000,
     "category": "food",
     "description": "eggs",
     "date": "2020-01-01",
@@ -9,7 +9,7 @@
   },
   {
     "id": "f1d2b160-7d43-4cf8-9e5f-b411295370df",
-    "amount": 10,
+    "amount": 1000,
     "category": "food",
     "description": "maggie",
     "date": "2022-01-01",
@@ -17,7 +17,7 @@
   },
   {
     "id": "292e9349-e3d9-40aa-bd7d-10dbf52e831d",
-    "amount": 40,
+    "amount": 4000,
     "category": "food",
     "description": "rice",
     "date": "2023-01-01",
@@ -25,7 +25,7 @@
   },
   {
     "id": "02ab2598-50e6-4ea4-86bb-4ba53912c543",
-    "amount": 300,
+    "amount": 30000,
     "category": "entertainment",
     "description": "mobile recharge",
     "date": "2026-01-01",
@@ -33,7 +33,7 @@
   },
   {
     "id": "bd0a3737-884f-42f9-9e01-6adb8b234797",
-    "amount": 20,
+    "amount": 2000,
     "category": "travel",
     "description": "bus",
     "date": "2025-03-03",
@@ -41,7 +41,7 @@
   },
   {
     "id": "fa1db4d9-4047-46d3-aaa9-abb123d8cd0e",
-    "amount": 500,
+    "amount": 50000,
     "category": "travel",
     "description": "train",
     "date": "2026-04-29",
@@ -49,7 +49,7 @@
   },
   {
     "id": "384fa9b1-cae0-4eb4-90bc-049a8ce80bd0",
-    "amount": 10000,
+    "amount": 1000000,
     "category": "shopping",
     "description": "clothes",
     "date": "2025-01-01",
@@ -57,7 +57,7 @@
   },
   {
     "id": "1ca919d4-9156-48be-a645-d1bef6e2ef2c",
-    "amount": 400,
+    "amount": 40000,
     "category": "travel",
     "description": "train",
     "date": "2024-01-01",
@@ -65,7 +65,7 @@
   },
   {
     "id": "af7a371c-70ed-491b-9f01-ce61a1745393",
-    "amount": 50,
+    "amount": 5000,
     "category": "food",
     "description": "icecream",
     "date": "2023-01-01",
