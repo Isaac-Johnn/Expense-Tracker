@@ -70,5 +70,21 @@
     "description": "icecream",
     "date": "2023-01-01",
     "created_at": "2026-04-29T07:21:05.598Z"
+  },
+  {
+    "id": "040bd231-cce4-4603-a83f-4e821f638399",
+    "amount": 30075,
+    "category": "travel",
+    "description": "train",
+    "date": "2001-01-01",
+    "created_at": "2026-04-29T07:49:52.381Z"
+  },
+  {
+    "id": "9eea1eeb-8a50-4f09-b22e-024d5b7c6be7",
+    "amount": 10000,
+    "category": "entertainment",
+    "description": "movie",
+    "date": "2020-01-01",
+    "created_at": "2026-04-29T07:56:13.064Z"
   }
 ]

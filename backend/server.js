@@ -10,23 +10,15 @@ app.use(cors())
 const filePath = path.join(__dirname, 'data', 'expenses.json')
 
 const toPaise = (amount) => {
-    const amountText = String(amount).trim()
+  const numericAmount = Number(amount)
 
-    if (!/^\d+(\.\d{1,2})?$/.test(amountText)) {
-        return null
-    }
+  if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
+    return null
+  }
 
-    if (!amountText.includes('.')) {
-        const paise = Number(amountText)
-        return Number.isSafeInteger(paise) && paise > 0 ? paise : null
-    }
+  const paise = Math.round(numericAmount * 100)
 
-    const [rupees, paise = ''] = amountText.split('.')
-    const amountInPaise = Number(rupees) * 100 + Number(paise.padEnd(2, '0'))
-
-    return Number.isSafeInteger(amountInPaise) && amountInPaise > 0
-        ? amountInPaise
-        : null
+  return Number.isSafeInteger(paise) && paise > 0 ? paise : null
 }
 
 app.post('/expenses', (req, res) => {
@@ -34,7 +26,7 @@ app.post('/expenses', (req, res) => {
     const amountInPaise = toPaise(newExpense.amount)
 
     if (!amountInPaise) {
-        return res.status(400).json({ error: 'Amount must be a positive integer' })
+        return res.status(400).json({ error: 'Amount must be a positive amount' })
     }
 
     // Step 1: Read existing data
